@@ -2,6 +2,7 @@ $( document ).ready(function() {
 
 var actions = ["My Neighbor Totoro", "Tokyo Ghoul", "Food Wars Anime", "Guilty Crown", "Sword Art Online", "Kiki's Delivery Service", "Your Lie in April", "Ponyo", "Howl's Moving Castle", "Ouran Host Club","Naruto", "Bleach Anime", "Angel Beats"];
 function displayGifButtons(){
+    
     $("#gifButtonsView").empty(); 
     for (var i = 0; i < actions.length; i++){
         var gifButton = $("<button>");
@@ -25,6 +26,8 @@ function addNewButton(){
     return false;
     });
 }
+
+
 //remove last button
 function removeLastButton(){
     $("removeGif").on("click", function(){
@@ -33,16 +36,22 @@ function removeLastButton(){
     return false;
     });
 }
+
+
 // displays gifs
 function displayGifs(){
     var action = $(this).attr("data-name");
     var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + action + "&api_key=dc6zaTOxFJmzC&limit=10";
+    
     console.log(queryURL); 
     $.ajax({
         url: queryURL,
         method: 'GET'
     })
+   
+
     .done(function(response) {
+       
         console.log(response); 
         $("#gifsView").empty(); 
         var results = response.data; 
